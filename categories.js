@@ -1,27 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Crea un array de categorías
-    var categories = [
-        "Todas las categorias",
-        "Hamburguesas",
-        "Pizzas",
-        "Postres",
-        "Bebidas",
-        "Pastas",
-        "Desayunos",
-        "Almuerzos"
-    ];
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryLinks = document.querySelectorAll('.selectCategory');
+    const categories = document.querySelectorAll('.category');
 
-    // Obtén el contenedor de categorías por su ID
-    var categoriesContainer = document.getElementById("allCategories");
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
 
-    // Crea elementos de anclaje para cada categoría y agrégales clases y atributos necesarios
-    categories.forEach(function (category) {
-        var categoryLink = document.createElement("a");
-        categoryLink.setAttribute("id", "category-" + category.replace(/\s/g, '-').toLowerCase());
-        categoryLink.setAttribute("href", "#");
-        categoryLink.textContent = category;
+            // Hide all categories
+            categories.forEach(category => {
+                category.style.display = 'none';
+            });
 
-        // Agrega cada categoría al contenedor
-        categoriesContainer.appendChild(categoryLink);
+            // Get the selected category
+            const selectedCategory = this.getAttribute('href');
+            const categoryToShow = document.querySelector(selectedCategory);
+
+            // Show the selected category
+            categoryToShow.style.display = 'block';
+
+            // If the selected category is not "allCategories", hide it
+            if (selectedCategory !== '#allCategories') {
+                const todasLasCategorias = document.getElementById('allCategories');
+                todasLasCategorias.style.display = 'none';
+            }
+        });
     });
 });
