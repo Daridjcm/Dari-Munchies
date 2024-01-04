@@ -1,3 +1,12 @@
+.container > a:hover {
+    transition: all 0.30s ease;
+    background-color: #dedede;
+}
+
+a {
+    padding-left: 3px;
+}
+
 #suggestions-container {
     position: absolute;
     width: 100%;
